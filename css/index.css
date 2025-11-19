@@ -1,0 +1,302 @@
+* {
+  box-sizing: border-box;
+}
+
+
+body {
+  width: 100%;
+  max-width: 900px;  /* centers nicely on desktop */
+  margin: 0 auto;    /* equal left & right margin */
+  padding: 10px;
+  background-color: rgb(39, 39, 39);
+}
+
+
+
+nav ul {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    list-style: none;
+    padding: 0;
+    background-color: rgb(4, 16, 2);
+    height: 100px;
+   border: 1px solid green ; 
+   width: 100%;
+   border-radius: 20px;
+    
+}
+
+
+button {
+  background-color:white;
+  border:solid green;
+  border-radius: 10px;
+  padding: 12px 24px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 5px 5px 10px 2px rgba(14, 13, 13, 0.5);
+}
+
+button:hover{
+    background-color: green;
+    color: white;
+}
+ 
+h1 {
+  color: aliceblue;
+  text-align: center;
+ font-family: "Caveat", cursive;
+  font-optical-sizing: auto;
+  font-weight: weight;
+  font-style: normal;
+}
+
+h2{
+  color: red;
+    text-align: center;
+     font-family: "Shadows Into Light", cursive;
+  font-weight: 400;
+  font-style: normal
+}
+.profile {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;         /* centers it */
+  position: relative;
+}
+
+.profile img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Animated border */
+.profile::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  padding: 6px;
+
+  
+
+  background: conic-gradient(
+    from var(--angle),
+    red,
+    white,
+    green
+  );
+
+}
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+
+
+nav ul li.active button {
+  background-color: green;
+  color: white;
+   text-decoration: underline;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 6px;
+}
+form {
+  position: relative;
+  border-radius: 20px;
+  padding: 20px;
+  margin-top: 20px;
+  background-color: rgb(15, 14, 14);
+  z-index: 1;
+  overflow: hidden; /* important so the animated border stays inside */
+}
+
+/* animated border */
+form::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 3px; /* border thickness */
+  border-radius: 20px;
+  background: conic-gradient(
+    from var(--angle),
+    red,
+    white,
+    green
+  );
+   /* Standard mask property (no vendor prefix) */
+  -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+
+  /* Safari / WebKit compatibility */
+  mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+
+  /* Ensures mask works correctly */
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+
+ /* animation: spin 3s linear infinite;*/
+ 
+}
+
+/* only declare once */
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes spin {
+  to {
+    --angle: 360deg;
+  }
+}
+
+p {
+  color: white;
+  text-indent: 20px;
+  padding: 5px;
+  margin: 10px;
+}
+
+
+
+.content h1{
+  color: red;
+}
+
+.content .link {
+  text-align: center;
+}
+
+.contanct{
+  text-align: center;
+}
+
+
+
+
+/* ================================
+   📱 1. Mobile Phones (portrait)
+   0px → 480px
+================================ */
+@media (max-width: 480px) {
+
+  body {
+    width: 100%;
+    margin: 0 auto;
+    padding: 10px;
+  }
+
+  nav ul {
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+  }
+
+  nav ul li
+  {
+    width: 100%;
+  }
+ nav ul li button{
+  width: 90%;
+  margin: 14px;
+ }
+  form {
+    width: 100%;
+  }
+
+  img {
+    max-width: 100%;
+  }
+}
+
+
+/* ================================
+   📱 2. Small Tablets
+   481px → 768px
+================================ */
+@media (max-width: 768px) and (min-width: 481px) {
+
+  body {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  nav ul {
+    display: flex;
+    flex-direction: row; /* keep row layout */
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    height: auto;        /* allow nav to grow with button height */
+    padding: 20px 0;     /* vertical padding so buttons fit */
+  }
+
+  button {
+    padding: 14px 16px;  /* ensure buttons fit inside nav */
+  }
+
+  form {
+    width: 100%;
+  }
+}
+
+/* ================================
+   💻 3. Tablets & Small Laptops
+   769px → 1024px
+================================ */
+@media (max-width: 1024px) and (min-width: 769px) {
+
+  body {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  nav ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    height: auto;       /* grow with button height */
+    padding: 20px 0;    /* vertical spacing */
+  }
+
+  button {
+    padding: 16px 20px;  /* taller buttons for bigger screens */
+  }
+
+  form {
+    width: 100%;
+  }
+}
+
+
+/* ================================
+   🖥 4. Large Screens
+   1025px and up
+================================ */
+@media (min-width: 1025px) {
+
+  body {
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
